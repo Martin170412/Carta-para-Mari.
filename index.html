@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mariana 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Pacifico', cursive;
+            color: white;
+            background-image: url('fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+        .overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            z-index: 2;
+            position: relative;
+        }
+        .letter {
+            margin-top: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 20px;
+        }
+        .hearts, .stars {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .heart, .star {
+            position: absolute;
+            color: pink;
+            animation: fall linear infinite;
+            font-size: 24px;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        .hidden {
+            display: none;
+        }
+        .surprise-button {
+            margin-top: 100px;
+            font-size: 20px;
+            background: pink;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-family: 'Pacifico', cursive;
+        }
+        .final-message {
+            margin-top: 50px;
+            font-size: 26px;
+            color: gold;
+            display: none;
+            animation: starsFade 2s ease-in-out forwards;
+        }
+        @keyframes starsFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <button class="surprise-button" onclick="mostrarCarta()">De Martin para el amor de mi vida 💗</button>
+        <div class="letter hidden" id="carta">
+            <h2>💌</h2>
+            <p>Muchas gracias por existir y ser una persona tan única y maravillosa, te amo mucho Mariana, tú no imaginas todo lo que eres para mí, lo que significas en mi vida y lo mucho que agradezco por poder encontrarte a ti en este gran mundo, de tantas personas a las que conocer, pero aún así yo sé que ninguna de ellas, es ni será un poco parecida a ti...</p>
+            <img src="mari.jpg" alt="Foto bebé" width="300" style="margin-top:20px; border-radius:20px;">
+            <br><br>
+            <button class="surprise-button" onclick="mostrarFinal()">Te amo ✨</button>
+            <div class="final-message" id="finalMessage">Tú eres única para mí y yo siempre seré único para ti ✨💖</div>
+        </div>
+    </div>
+
+    <div class="hearts" id="corazones"></div>
+    <div class="stars" id="estrellas"></div>
+
+    <audio autoplay loop>
+        <source src="congratulations.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const corazones = document.getElementById('corazones');
+        const estrellas = document.getElementById('estrellas');
+        function crearElemento(icono, clase, contenedor) {
+            const el = document.createElement("div");
+            el.className = clase;
+            el.style.left = Math.random() * 100 + "vw";
+            el.style.animationDuration = 3 + Math.random() * 5 + "s";
+            el.textContent = icono;
+            contenedor.appendChild(el);
+            setTimeout(() => el.remove(), 8000);
+        }
+        setInterval(() => crearElemento("💗", "heart", corazones), 300);
+        setInterval(() => crearElemento("✨", "star", estrellas), 500);
+
+        function mostrarCarta() {
+            document.getElementById('carta').classList.remove('hidden');
+        }
+
+        function mostrarFinal() {
+            document.getElementById('finalMessage').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
